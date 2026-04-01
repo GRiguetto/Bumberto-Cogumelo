@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Bumberto "Chapéu-Rubro" — Ficha D&D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=IM+Fell+English:ital@0;1&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── ROOT THEME ── */
+:root {
+  --ink: #1a1208;
+  --parchment: #f5ead6;
+  --parchment2: #ede0c0;
+  --parchment3: #e0cfa0;
+  --red: #8b1a1a;
+  --red2: #c0392b;
+  --red-glow: rgba(139,26,26,0.35);
+  --green-dark: #1e3a1e;
+  --green: #2d5a2d;
+  --green-light: #4a7c4a;
+  --gold: #c9a84c;
+  --gold2: #e8c86e;
+  --gold-glow: rgba(201,168,76,0.3);
+  --brown: #5c3d1e;
+  --brown-light: #8a6040;
+  --mushroom: #8b6914;
+  --border: rgba(90,55,15,0.35);
+  --border-strong: rgba(90,55,15,0.65);
+  --shadow: 0 4px 24px rgba(20,10,0,0.35);
+  --radius: 12px;
+  --radius-sm: 7px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--green-dark);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(45,90,45,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(139,26,26,0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(30,58,30,0.6) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── LAYOUT WRAPPER ── */
+#app {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+/* ── HERO HEADER ── */
+.hero {
+  position: relative;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  background: var(--green-dark);
+  margin-bottom: 0;
+}
+
+.hero-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: sepia(0.4) contrast(1.1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26,18,8,0.1) 0%,
+    rgba(26,18,8,0.0) 30%,
+    rgba(26,18,8,0.7) 70%,
+    rgba(26,18,8,1) 100%
+  );
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 20px 24px;
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 5vw, 36px);
+  font-weight: 900;
+  color: var(--gold2);
+  text-shadow: 0 0 30px var(--gold-glow), 0 2px 8px rgba(0,0,0,0.9);
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: var(--parchment3);
+  font-size: clamp(13px, 3vw, 16px);
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.hero-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid;
+  text-transform: uppercase;
+}
+
+.badge-red { background: rgba(139,26,26,0.6); color: #f5b8b8; border-color: var(--red2); }
+.badge-green { background: rgba(45,90,45,0.6); color: #a8d8a8; border-color: var(--green-light); }
+.badge-gold { background: rgba(201,168,76,0.2); color: var(--gold2); border-color: var(--gold); }
+
+/* ── MAIN PARCHMENT CARD ── */
+.parchment {
+  background: var(--parchment);
+  background-image:
+    url("https://www.transparenttextures.com/patterns/old-paper.png"),
+    linear-gradient(160deg, var(--parchment) 0%, var(--parchment2) 50%, var(--parchment3) 100%);
+  border: 2px solid var(--border-strong);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* ── SECTION HEADERS ── */
+.section-header {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  padding: 6px 0 4px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-header::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 2px;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+/* ── LEVEL SELECTOR ── */
+.level-panel {
+  background: var(--green-dark);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--border-strong);
+}
+
+.level-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold2);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.level-track {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.lvl-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(201,168,76,0.35);
+  background: rgba(201,168,76,0.05);
+  color: rgba(245,234,214,0.5);
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lvl-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold2);
+  background: rgba(201,168,76,0.15);
+  transform: scale(1.08);
+}
+
+.lvl-btn.active {
+  background: var(--red);
+  border-color: var(--gold2);
+  color: var(--gold2);
+  box-shadow: 0 0 14px var(--red-glow);
+  transform: scale(1.12);
+}
+
+.lvl-btn.reached {
+  border-color: rgba(201,168,76,0.6);
+  color: rgba(245,234,214,0.7);
+}
+
+/* ── NAV TABS ── */
+.nav-tabs {
+  display: flex;
+  background: var(--parchment3);
+  border-bottom: 2px solid var(--border-strong);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  padding: 12px 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nav-tab:hover { color: var(--red); }
+
+.nav-tab.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+  background: rgba(139,26,26,0.06);
+}
+
+.tab-icon { font-size: 14px; }
+
+/* ── TAB CONTENT ── */
+.tab-content { display: none; padding: 20px; }
+.tab-content.active { display: block; }
+
+/* ── STAT CARDS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--parchment2);
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 6px 8px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.15s;
+}
+
+.stat-card:active { transform: scale(0.96); }
+
+.stat-abbr {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  margin: 2px 0;
+}
+
+.stat-mod {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brown-light);
+  background: var(--parchment3);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 1px 8px;
+  display: inline-block;
+}
+
+/* ── COMBAT GRID ── */
+.combat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.combat-card {
+  background: var(--parchment2);
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  text-align: center;
+}
+
+.combat-card.hp-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #3a0e0e 0%, #5a1a1a 100%);
+  border-color: var(--gold);
+}
+
+.combat-value {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.hp-card .combat-value { color: var(--gold2); font-size: 48px; }
+
+.combat-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--brown-light);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.hp-card .combat-label { color: rgba(245,200,110,0.7); }
+
+.hp-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 99px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  border-radius: 99px;
+  width: 100%;
+  transition: width 0.5s;
+}
+
+/* ── SKILL LIST ── */
+.skills-list { display: flex; flex-direction: column; gap: 4px; }
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+.skill-row:hover { background: rgba(90,55,15,0.08); }
+
+.skill-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.skill-dot.proficient { background: var(--red); border-color: var(--red); }
+.skill-dot.expertise { background: var(--gold); border-color: var(--gold); }
+
+.skill-name { flex: 1; color: var(--ink); }
+.skill-attr { font-size: 11px; color: var(--brown-light); }
+.skill-bonus { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--brown); min-width: 28px; text-align: right; }
+
+/* ── ABILITY CARDS ── */
+.abilities-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ability-card {
+  background: var(--parchment2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ability-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--red);
+}
+
+.ability-card:hover { border-color: var(--border-strong); transform: translateX(3px); }
+
+.ability-card.new-ability::before { background: var(--gold); }
+
+.ability-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.ability-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ability-name {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.2;
+}
+
+.ability-source {
+  font-size: 11px;
+  color: var(--brown-light);
+  margin-top: 2px;
+}
+
+.ability-new-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: var(--gold);
+  color: #2a1800;
+  padding: 2px 7px;
+  border-radius: 99px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.ability-desc {
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.6;
+  padding-left: 32px;
+  font-style: italic;
+}
+
+/* ── SPELL CARDS ── */
+.spell-level-group { margin-bottom: 18px; }
+
+.spell-level-title {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  background: rgba(139,26,26,0.08);
+  border-left: 3px solid var(--red);
+  margin-bottom: 8px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spell-slots {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.spell-slot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--red);
+  background: var(--red);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.spell-slot.used { background: transparent; }
+
+.spell-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--parchment2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.spell-card:hover { border-color: var(--border-strong); background: var(--parchment3); }
+
+.spell-school {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: rgba(139,26,26,0.12);
+  border: 1.5px solid rgba(139,26,26,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.spell-info { flex: 1; }
+
+.spell-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.spell-name {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.spell-tag {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 99px;
+  background: rgba(45,90,45,0.12);
+  border: 1px solid rgba(45,90,45,0.3);
+  color: var(--green);
+}
+
+.spell-tag.conc { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--mushroom); }
+.spell-tag.ritual { background: rgba(92,61,30,0.1); border-color: rgba(92,61,30,0.3); color: var(--brown); }
+
+.spell-desc { font-size: 12.5px; color: var(--brown-light); margin-top: 3px; line-height: 1.4; }
+
+.spell-stats {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.spell-stat { font-size: 11px; color: var(--brown-light); }
+.spell-stat strong { color: var(--brown); }
+
+/* ── EQUIPMENT ── */
+.equipment-section { margin-bottom: 18px; }
+
+.equip-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.equip-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--parchment2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.equip-card:hover { border-color: var(--border-strong); transform: translateX(2px); }
+
+.equip-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.equip-info { flex: 1; }
+
+.equip-name {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.equip-stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+
+.equip-stat {
+  font-size: 11.5px;
+  color: var(--brown-light);
+  background: var(--parchment3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.equip-desc {
+  font-size: 12.5px;
+  color: var(--brown-light);
+  margin-top: 4px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.equip-rarity {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  border: 1.5px solid;
+  flex-shrink: 0;
+}
+
+.rarity-common { color: var(--brown-light); border-color: var(--border); }
+.rarity-uncommon { color: #3a7a3a; border-color: #3a7a3a; background: rgba(58,122,58,0.08); }
+.rarity-rare { color: #1a5c9e; border-color: #1a5c9e; background: rgba(26,92,158,0.08); }
+
+/* ── BACKGROUND / LORE TAB ── */
+.lore-section { margin-bottom: 18px; }
+
+.lore-block {
+  background: var(--parchment2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lore-block::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--gold);
+}
+
+.lore-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--mushroom);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  padding-left: 10px;
+}
+
+.lore-text {
+  font-family: 'IM Fell English', serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink);
+  padding-left: 10px;
+  font-style: italic;
+}
+
+/* ── LEVEL UP TOAST ── */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: var(--green-dark);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold2);
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 20px var(--gold-glow);
+  transition: transform 0.4s cubic-bezier(.175,.885,.32,1.275);
+  pointer-events: none;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── PROFICIENCY BADGE ── */
+.prof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(139,26,26,0.08);
+  border: 1px solid rgba(139,26,26,0.3);
+  border-radius: 99px;
+  padding: 3px 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+}
+
+/* ── SAVING THROWS ── */
+.saves-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.save-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  background: var(--parchment2);
+  border: 1px solid var(--border);
+}
+
+.save-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  flex-shrink: 0;
+}
+.save-dot.proficient { background: var(--red); border-color: var(--red); }
+.save-name { flex: 1; color: var(--ink); font-size: 12px; }
+.save-bonus { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--brown); }
+
+/* ── APPEARANCE SECTION ── */
+.appearance-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-strong);
+  margin-bottom: 14px;
+  filter: sepia(0.3);
+}
+
+/* ── MISC ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
+}
+
+.italic { font-style: italic; }
+.gold-text { color: var(--gold); font-family: 'Cinzel', serif; font-weight: 700; }
+
+.level-milestone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.milestone-icon { font-size: 20px; }
+.milestone-text { font-family: 'Cinzel', serif; font-size: 12px; color: var(--mushroom); }
+.milestone-text strong { color: var(--gold); }
+
+/* ── MOBILE FIXES ── */
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .combat-grid { grid-template-columns: repeat(2, 1fr); }
+  .saves-grid { grid-template-columns: 1fr 1fr; }
+  .nav-tab { padding: 10px 12px; font-size: 10px; }
+  .tab-icon { display: none; }
+  .lvl-btn { width: 30px; height: 30px; font-size: 11px; }
+  .hero-img { height: 220px; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ability-card { animation: fadeInUp 0.3s ease both; }
+.ability-card:nth-child(1) { animation-delay: 0.05s; }
+.ability-card:nth-child(2) { animation-delay: 0.1s; }
+.ability-card:nth-child(3) { animation-delay: 0.15s; }
+.ability-card:nth-child(4) { animation-delay: 0.2s; }
+
+.spell-card { animation: fadeInUp 0.25s ease both; }
+
+.ornament {
+  text-align: center;
+  color: var(--gold);
+  opacity: 0.5;
+  font-size: 18px;
+  margin: 8px 0;
+  letter-spacing: 6px;
+}
+
+/* ── HP TRACKER ── */
+.hp-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.hp-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: transparent;
+  color: var(--gold2);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+}
+
+.hp-btn:hover { background: rgba(201,168,76,0.2); transform: scale(1.1); }
+.hp-btn:active { transform: scale(0.95); }
+
+.hp-current {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold2);
+  min-width: 60px;
+  text-align: center;
+}
+
+.hp-max {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  color: rgba(245,200,110,0.6);
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- TOAST -->
+  <div class="toast" id="toast">⚡ Nível alcançado!</div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="hero-img"
+      src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&q=80"
+      alt="Floresta mágica de jardim"
+      onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=900&q=80'">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-title">Bumberto "Chapéu-Rubro" Cogumelo</div>
+      <div class="hero-subtitle">Gnomo da Floresta • Mago Ilusionista</div>
+      <div class="hero-badges">
+        <span class="hero-badge badge-red">Escola da Ilusão</span>
+        <span class="hero-badge badge-gold" id="level-badge">Nível 1</span>
+        <span class="hero-badge badge-green">Neutro e Bom</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN PARCHMENT -->
+  <div class="parchment">
+
+    <!-- LEVEL SELECTOR -->
+    <div class="level-panel">
+      <span class="level-label">⚡ Nível</span>
+      <div class="level-track" id="level-track"></div>
+    </div>
+
+    <!-- NAV TABS -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="status" onclick="switchTab('status')">
+        <span class="tab-icon">⚔️</span> Status
+      </button>
+      <button class="nav-tab" data-tab="habilidades" onclick="switchTab('habilidades')">
+        <span class="tab-icon">✨</span> Habilidades
+      </button>
+      <button class="nav-tab" data-tab="magias" onclick="switchTab('magias')">
+        <span class="tab-icon">🔮</span> Magias
+      </button>
+      <button class="nav-tab" data-tab="equipamento" onclick="switchTab('equipamento')">
+        <span class="tab-icon">🎒</span> Equip.
+      </button>
+      <button class="nav-tab" data-tab="lore" onclick="switchTab('lore')">
+        <span class="tab-icon">📜</span> História
+      </button>
+    </div>
+
+    <!-- ═══ TAB: STATUS ═══ -->
+    <div class="tab-content active" id="tab-status">
+      <div class="section-header">📊 Atributos</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-abbr">FOR</div>
+          <div class="stat-value">6</div>
+          <div class="stat-mod">−2</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-abbr">DES</div>
+          <div class="stat-value">14</div>
+          <div class="stat-mod">+2</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-abbr">CON</div>
+          <div class="stat-value">13</div>
+          <div class="stat-mod">+1</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-abbr">INT</div>
+          <div class="stat-value" id="int-val">18</div>
+          <div class="stat-mod" id="int-mod">+4</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-abbr">SAB</div>
+          <div class="stat-value">12</div>
+          <div class="stat-mod">+1</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-abbr">CAR</div>
+          <div class="stat-value">10</div>
+          <div class="stat-mod">+0</div>
+        </div>
+      </div>
+
+      <div class="section-header">❤️ Combate</div>
+      <div class="combat-grid">
+        <div class="combat-card hp-card" style="grid-column: 1 / -1;">
+          <div style="margin-bottom:6px;">
+            <div class="combat-label">Pontos de Vida</div>
+          </div>
+          <div class="hp-controls">
+            <button class="hp-btn" onclick="changeHP(-1)">−</button>
+            <div>
+              <div class="hp-current" id="hp-current">6</div>
+              <div class="hp-max" id="hp-max">/ 6</div>
+            </div>
+            <button class="hp-btn" onclick="changeHP(+1)">+</button>
+          </div>
+          <div class="hp-bar" style="margin-top:10px;">
+            <div class="hp-fill" id="hp-fill"></div>
+          </div>
+        </div>
+        <div class="combat-card">
+          <div class="combat-value" id="ca-val">13</div>
+          <div class="combat-label">Classe de Armadura</div>
+        </div>
+        <div class="combat-card">
+          <div class="combat-value" id="init-val">+2</div>
+          <div class="combat-label">Iniciativa</div>
+        </div>
+        <div class="combat-card">
+          <div class="combat-value">7,5m</div>
+          <div class="combat-label">Deslocamento</div>
+        </div>
+        <div class="combat-card">
+          <div class="combat-value" id="prof-val">+2</div>
+          <div class="combat-label">Bônus de Prof.</div>
+        </div>
+      </div>
+
+      <div class="section-header">🛡️ Testes de Resistência</div>
+      <div class="saves-grid" id="saves-grid"></div>
+
+      <div class="section-header">🎯 Perícias</div>
+      <div class="skills-list" id="skills-list"></div>
+
+      <div class="ornament">✦ ✦ ✦</div>
+      <div style="text-align:center; padding: 4px 0 10px;">
+        <span class="prof-badge">Idiomas: Comum, Gnômico, Silvano, Élfico</span>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: HABILIDADES ═══ -->
+    <div class="tab-content" id="tab-habilidades">
+      <div id="level-milestone-display"></div>
+      <div class="section-header">🌟 Habilidades de Classe e Raça</div>
+      <div class="abilities-grid" id="abilities-list"></div>
+    </div>
+
+    <!-- ═══ TAB: MAGIAS ═══ -->
+    <div class="tab-content" id="tab-magias">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+        <div style="background:var(--parchment2); border:1.5px solid var(--border-strong); border-radius:var(--radius-sm); padding:8px 14px; text-align:center; flex:1; min-width:80px;">
+          <div style="font-family:'Cinzel',serif; font-size:22px; font-weight:900; color:var(--red);" id="spell-dc">13</div>
+          <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:1px; color:var(--brown-light);">CD de Magia</div>
+        </div>
+        <div style="background:var(--parchment2); border:1.5px solid var(--border-strong); border-radius:var(--radius-sm); padding:8px 14px; text-align:center; flex:1; min-width:80px;">
+          <div style="font-family:'Cinzel',serif; font-size:22px; font-weight:900; color:var(--red);" id="spell-atk">+5</div>
+          <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:1px; color:var(--brown-light);">Ataque Mágico</div>
+        </div>
+        <div style="background:var(--parchment2); border:1.5px solid var(--border-strong); border-radius:var(--radius-sm); padding:8px 14px; text-align:center; flex:1; min-width:80px;">
+          <div style="font-family:'Cinzel',serif; font-size:22px; font-weight:900; color:var(--red);" id="spell-slots-display">2</div>
+          <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:1px; color:var(--brown-light);">Espaços Total</div>
+        </div>
+      </div>
+      <div id="spells-container"></div>
+    </div>
+
+    <!-- ═══ TAB: EQUIPAMENTO ═══ -->
+    <div class="tab-content" id="tab-equipamento">
+      <div id="equipment-container"></div>
+    </div>
+
+    <!-- ═══ TAB: HISTÓRIA / LORE ═══ -->
+    <div class="tab-content" id="tab-lore">
+      <img class="appearance-img"
+        src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=800&q=80"
+        alt="Jardim mágico"
+        onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80'">
+
+      <div class="section-header">📖 Aparência</div>
+      <div class="lore-section">
+        <div class="lore-block">
+          <div class="lore-heading">Descrição Física</div>
+          <div class="lore-text">
+            Bumberto mede cerca de 90 centímetros, com um corpo rechonchudo e pernas curtas que terminam em botas de couro surradas. Sua pele tem a cor de argila cozida ao sol — marrom-avermelhada — marcada por rugas de riso ao redor dos olhos e bochechas. O nariz é grande, bulboso e levemente vermelho, o nariz de alguém que passou séculos ao ar livre. As orelhas são levemente pontiagudas e projetam-se para os lados sob o chapéu.
+          </div>
+        </div>
+        <div class="lore-block">
+          <div class="lore-heading">O Chapéu Vermelho</div>
+          <div class="lore-text">
+            O famoso chapéu cônico — vermelho escarlate, gasto e levemente dobrado na ponta — tem uma faixa de couro fino com uma pequena fivela de latão logo acima da aba. Lança uma sombra marcante sobre seu cenho franzido. Ele jamais o tira. Diz-se que quem vir o gnomo sem o chapéu nunca mais terá bons sonhos.
+          </div>
+        </div>
+        <div class="lore-block">
+          <div class="lore-heading">Barba e Vestes</div>
+          <div class="lore-text">
+            Uma barba branca e magnífica, dividida em três tranças com anéis de cobre nas pontas. Uma túnica verde-floresta escura com colete de couro marrom por cima, preso por fechos em formato de bolotas. O que se vê dos braços está coberto por manchas antigas de terra. Uma capa marota com pétalas secas costuradas na barra. Um cinto largo sustenta bolsas cheias de sementes, seixos e vidrinhos de cortiça.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">⚗️ Personalidade</div>
+      <div class="lore-section">
+        <div class="lore-block">
+          <div class="lore-heading">Traço</div>
+          <div class="lore-text">"Trata cada jardim como um templo sagrado. Fica genuinamente indignado quando alguém pisa num canteiro sem pedir licença às flores."</div>
+        </div>
+        <div class="lore-block">
+          <div class="lore-heading">Ideal</div>
+          <div class="lore-text">"A ordem natural do jardim é o espelho da ordem mágica do mundo. Cuide do pequeno, e o grande se cuida."</div>
+        </div>
+        <div class="lore-block">
+          <div class="lore-heading">Vínculo</div>
+          <div class="lore-text">Guarda uma semente de carvalho do jardim de seu mestre falecido, Gertrudes Raíz-de-Ouro. Jura plantá-la quando encontrar terra verdadeiramente digna.</div>
+        </div>
+        <div class="lore-block">
+          <div class="lore-heading">Fraqueza</div>
+          <div class="lore-text">Não consegue mentir para crianças. Fica paralisado de vergonha quando alguém descobre uma de suas ilusões — mesmo que a ilusão tenha sido para o bem.</div>
+        </div>
+      </div>
+
+      <div class="section-header">🌿 História</div>
+      <div class="lore-block">
+        <div class="lore-heading">Origem</div>
+        <div class="lore-text">
+          Nascido no Grande Jardim de Verdemar, Bumberto foi aprendiz do sábio Gertrudes Raíz-de-Ouro por duzentos anos. Quando o jardim foi destruído por um inverno mágico, ele partiu com apenas seu cajado de cogumelo, o amuleto de musgo e a semente sagrada. Agora vaga em busca de terra digna — e, no caminho, coleciona aventuras, plantas raras e a irritação de pessoas que não entendem a importância dos jardins.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /parchment -->
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DADOS DO PERSONAGEM — BUMBERTO "CHAPÉU-RUBRO" COGUMELO
+// ═══════════════════════════════════════════════════════
+
+const CHARACTER = {
+  name: "Bumberto \"Chapéu-Rubro\" Cogumelo",
+  race: "Gnomo da Floresta",
+  class: "Mago (Escola da Ilusão)",
+  alignment: "Neutro e Bom",
+  background: "Sábio",
+  stats: { FOR:6, DES:14, CON:13, INT:18, SAB:12, CAR:10 },
+
+  // HP por nível (máximo)
+  hpPerLevel: [6,10,14,18,22,27,32,37,42,47,52,57,62,67,72,77,82,87,92,97],
+
+  // Bônus de proficiência por nível
+  profBonus: [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6],
+
+  // Atributos de INT sobem em níveis de ASI
+  intBonus: { 4:1, 8:1, 12:1, 16:1, 19:1 }, // acumulado extra acima de 18
+
+  saves: {
+    proficient: ['INT', 'SAB'],
+    names: ['FOR','DES','CON','INT','SAB','CAR'],
+  },
+
+  skills: [
+    { name:'Acrobacia',   attr:'DES', prof:false },
+    { name:'Adestrar Animais', attr:'SAB', prof:false },
+    { name:'Arcanismo',   attr:'INT', prof:true  },
+    { name:'Atletismo',   attr:'FOR', prof:false },
+    { name:'Atuação',     attr:'CAR', prof:false },
+    { name:'Enganação',   attr:'CAR', prof:false },
+    { name:'Furtividade', attr:'DES', prof:false },
+    { name:'História',    attr:'INT', prof:true  },
+    { name:'Intimidação', attr:'CAR', prof:false },
+    { name:'Intuição',    attr:'SAB', prof:false },
+    { name:'Investigação',attr:'INT', prof:false },
+    { name:'Medicina',    attr:'SAB', prof:false },
+    { name:'Natureza',    attr:'INT', prof:true  },
+    { name:'Percepção',   attr:'SAB', prof:true  },
+    { name:'Persuasão',   attr:'CAR', prof:false },
+    { name:'Prestidigitação', attr:'DES', prof:true },
+    { name:'Religião',    attr:'INT', prof:false },
+    { name:'Sobrevivência',attr:'SAB', prof:true },
+  ],
+};
+
+// ═══════════════════════════════════════════════════════
+// HABILIDADES POR NÍVEL
+// ═══════════════════════════════════════════════════════
+
+const ABILITIES = [
+  { level:1, icon:'🌙', name:'Visão no Escuro', source:'Raça — Gnomo da Floresta', new_at:1,
+    desc:'Você enxerga em penumbra dentro de 18m como se fosse luz plena, e no escuro como se fosse penumbra. Não distingue cores no escuro, apenas tons de cinza.' },
+  { level:1, icon:'🧠', name:'Astúcia Gnômica', source:'Raça — Gnomo da Floresta', new_at:1,
+    desc:'Vantagem em todos os testes de resistência de Inteligência, Sabedoria e Carisma contra magias e outros efeitos mágicos.' },
+  { level:1, icon:'🎭', name:'Ilusão Natural', source:'Raça — Gnomo da Floresta', new_at:1,
+    desc:'Você pode conjurar Ilusão Menor sem componentes, usando Inteligência como atributo de conjuração. A ilusão dura 1 minuto e afeta apenas 1 alvo sensorial.' },
+  { level:1, icon:'🐦', name:'Fala com Animais Pequenos', source:'Raça — Gnomo da Floresta', new_at:1,
+    desc:'Você pode se comunicar de forma simples com animais pequenos ou menores da floresta: esquilos, ouriços, pássaros, sapos. Eles não são obrigados a atender pedidos.' },
+  { level:1, icon:'📚', name:'Conjuração de Magias', source:'Classe — Mago Nível 1', new_at:1,
+    desc:'Você pode conjurar magias de mago usando Inteligência como atributo de conjuração. CD de magia = 8 + bônus de proficiência + modificador de INT. Bônus de ataque mágico = bônus de proficiência + mod. INT.' },
+  { level:1, icon:'🔍', name:'Recuperar Magia', source:'Classe — Mago Nível 1', new_at:1,
+    desc:'Uma vez por descanso curto, você pode recuperar espaços de magia usados cujo nível total seja igual ou menor que metade do seu nível de mago (mínimo 1).' },
+  { level:1, icon:'📖', name:'Grimório', source:'Classe — Mago Nível 1', new_at:1,
+    desc:'Você possui um grimório com 6 magias de 1º nível de mago. Você aprende 2 magias novas a cada nível, além de poder copiar magias encontradas em aventura.' },
+  { level:2, icon:'🎨', name:'Ilusão Aprimorada', source:'Escola da Ilusão — Nível 2', new_at:2,
+    desc:'Quando você conjurar uma magia da escola de Ilusão que produza uma ilusão, você pode fazer a ilusão incluir um som ou um cheiro à sua escolha, de forma gratuita.' },
+  { level:2, icon:'🔄', name:'Ilusão Maleável', source:'Escola da Ilusão — Nível 2', new_at:2,
+    desc:'Se você mantiver concentração em uma magia de Ilusão com duração de 1 minuto ou mais, você pode usar uma ação bônus para alterar a natureza da ilusão.' },
+  { level:4, icon:'⬆️', name:'Melhoria de Atributo', source:'Classe — Mago Nível 4', new_at:4,
+    desc:'Neste nível você ganhou +2 em Inteligência (agora INT 20), ou +1 em dois atributos à sua escolha. Atributos não podem ultrapassar 20 naturalmente.' },
+  { level:6, icon:'👥', name:'Duplicata Ilusória', source:'Escola da Ilusão — Nível 6', new_at:6,
+    desc:'Quando uma criatura faz um ataque contra você, você pode usar sua reação para interpor uma cópia ilusória. O ataque tem desvantagem e a cópia é destruída se o ataque acertar.' },
+  { level:8, icon:'⬆️', name:'Melhoria de Atributo (Nível 8)', source:'Classe — Mago Nível 8', new_at:8,
+    desc:'Segunda melhoria de atributo: +2 em Constituição (agora CON 15), ou +1 em dois atributos. Seu modificador de CON melhora os pontos de vida retroativamente.' },
+  { level:10, icon:'👁️', name:'Realidade Ilusória', source:'Escola da Ilusão — Nível 10', new_at:10,
+    desc:'Quando você conjurar uma magia de Ilusão de 1° nível ou superior, você pode tornar um objeto não-mágico inanimado dentro da ilusão real e tangível por 1 minuto.' },
+  { level:12, icon:'⬆️', name:'Melhoria de Atributo (Nível 12)', source:'Classe — Mago Nível 12', new_at:12,
+    desc:'Terceira melhoria: você pode escolher um talento, como Conjurador de Guerra ou Observador, para expandir ainda mais suas capacidades.' },
+  { level:14, icon:'🌐', name:'Duplicador Ilusório', source:'Escola da Ilusão — Nível 14', new_at:14,
+    desc:'Você pode criar uma cópia ilusória perfeita de si mesmo, de um aliado, ou de uma criatura que você viu. A cópia pode ser controlada como ação bônus por até 1 hora.' },
+  { level:16, icon:'⬆️', name:'Melhoria de Atributo (Nível 16)', source:'Classe — Mago Nível 16', new_at:16,
+    desc:'Quarta melhoria de atributo. Sua maestria mágica cresce ainda mais com cada ponto de Inteligência.' },
+  { level:18, icon:'🧙', name:'Maestria em Magias', source:'Classe — Mago Nível 18', new_at:18,
+    desc:'Escolha uma magia de 1° e uma de 2° nível no seu grimório. Você pode conjurá-las sem gastar espaços de magia entre um descanso longo e outro.' },
+  { level:20, icon:'💫', name:'Magias Supremas', source:'Classe — Mago Nível 20', new_at:20,
+    desc:'Escolha duas magias de 3° nível. Você pode conjurá-las sem gastar espaços de magia uma vez cada por descanso longo. Esta é a culminação de sua jornada como Ilusionista.' },
+];
+
+// ═══════════════════════════════════════════════════════
+// MAGIAS POR NÍVEL DE PERSONAGEM
+// ═══════════════════════════════════════════════════════
+
+const SPELLS = {
+  cantrips: [
+    { name:'Ilusão Menor', icon:'🎭', school:'Ilusão', tags:[], cast:'1 ação', range:'9m', dur:'1 min', desc:'Cria um som ou imagem de um objeto de tamanho máximo 1,5m³. Desaparece se tocado ou inspecionado.' },
+    { name:'Luz', icon:'💡', school:'Evocação', tags:[], cast:'1 ação', range:'Toque', dur:'1h', desc:'Um objeto que você toca emite luz brilhante (6m) e tênue (mais 6m) por 1 hora. A luz pode ser colorida.' },
+    { name:'Choque do Trovão', icon:'⚡', school:'Evocação', tags:[], cast:'1 ação', range:'1,5m', dur:'Instântaneo', desc:'1d8 de dano de relâmpago. Em acerto, a criatura não pode usar reações até o próximo turno dela.' },
+    { name:'Toque Gelado', icon:'❄️', school:'Necromancia', tags:[], cast:'1 ação', range:'27m', dur:'1 turno', desc:'1d8 necrótico. O alvo não pode recuperar PV até o seu próximo turno. +1d8 nos níveis 5, 11 e 17.', min_level:3 },
+    { name:'Prestidigitação', icon:'🎪', school:'Transmutação', tags:['Ritual'], cast:'1 ação', range:'3m', dur:'1h', desc:'Efeitos mágicos pequenos: acender chamas, limpar objetos, criar ilusões cosméticas, esquentar ou esfriar alimentos.', min_level:5 },
+  ],
+  1: {
+    slots: [0,2,2,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+    spells: [
+      { name:'Imagem Silenciosa', icon:'🖼️', school:'Ilusão', tags:['Concentração'], cast:'1 ação', range:'18m', dur:'10 min', desc:'Ilusão visual de até 4,5m³. Qualquer interação física a revela como ilusão.' },
+      { name:'Arma Mágica', icon:'⚔️', school:'Transmutação', tags:['Concentração'], cast:'1 ação bônus', range:'Toque', dur:'1h', desc:'Uma arma não mágica torna-se mágica com +1 de bônus de ataque e dano. Sobe para +2 no nível 4.' },
+      { name:'Detectar Magia', icon:'🔍', school:'Adivinhaçã', tags:['Concentração','Ritual'], cast:'1 ação', range:'Si mesmo', dur:'10 min', desc:'Percebe magia em 9m. Pode ver auras e identificar escolas de magia.' },
+      { name:'Escudo', icon:'🛡️', school:'Abjuração', tags:[], cast:'1 reação', range:'Si mesmo', dur:'1 turno', desc:'+5 à CA até o início do próximo turno (inclusive contra o ataque que ativou). Anula Mísseis Mágicos.', min_level:3 },
+    ]
+  },
+  2: {
+    slots: [0,0,0,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
+    spells: [
+      { name:'Ilusão Maior', icon:'🌈', school:'Ilusão', tags:['Concentração'], cast:'1 ação', range:'27m', dur:'10 min', desc:'Ilusão com 5 sentidos (visão, som, cheiro, temperatura, textura). Criaturas podem tentar Investigação CD para descobrir.', min_level:3 },
+      { name:'Invisibilidade', icon:'👻', school:'Ilusão', tags:['Concentração'], cast:'1 ação', range:'Toque', dur:'1h', desc:'Uma criatura torna-se invisível até atacar ou conjurar. Itens carregados e usados também ficam invisíveis.', min_level:3 },
+      { name:'Sugestão', icon:'💬', school:'Encantamento', tags:['Concentração'], cast:'1 ação', range:'9m', dur:'8h', desc:'Faz uma sugestão razoável a um alvo que falhe em SAB. Ele executa a ação da melhor forma que pode.', min_level:3 },
+      { name:'Alterar Aparência', icon:'🎭', school:'Transmutação', tags:[], cast:'1 ação', range:'Si mesmo', dur:'1h', desc:'Altera aparência física: altura, peso, características faciais, som da voz. Não muda forma geral do corpo.', min_level:5 },
+    ]
+  },
+  3: {
+    slots: [0,0,0,0,0,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3],
+    spells: [
+      { name:'Imagem Maior', icon:'🏛️', school:'Ilusão', tags:['Concentração'], cast:'1 ação', range:'36m', dur:'10 min', desc:'Ilusão com sons, cheiro e temperatura, de até 9m³. Pode ser animada com ação bônus.', min_level:5 },
+      { name:'Velocidade', icon:'🏃', school:'Transmutação', tags:['Concentração'], cast:'1 ação', range:'9m', dur:'1 min', desc:'Até 6 criaturas ganham velocidade dobrada, +2 CA, vantagem em DEX e ação adicional limitada.', min_level:5 },
+      { name:'Dissipar Magia', icon:'💥', school:'Abjuração', tags:[], cast:'1 ação', range:'27m', dur:'Instantâneo', desc:'Encerra automaticamente magias de 3° ou menos. Magias superiores: INT CD 10 + nível da magia.', min_level:5 },
+    ]
+  },
+  4: {
+    slots: [0,0,0,0,0,0,0,1,2,3,3,3,3,3,3,3,3,3,3,3,3],
+    spells: [
+      { name:'Criar Ilusão Perfeita', icon:'💎', school:'Ilusão', tags:['Concentração'], cast:'1 ação', range:'36m', dur:'10 min', desc:'A mais completa das ilusões — som, imagem, cheiro. Uma criatura que interagir faz SAB CD 15 ou acredita completamente.', min_level:7 },
+      { name:'Polymorph', icon:'🦎', school:'Transmutação', tags:['Concentração'], cast:'1 ação', range:'18m', dur:'1h', desc:'Transforma uma criatura numa besta com CR igual ou menor que o nível do alvo.', min_level:7 },
+    ]
+  },
+  5: {
+    slots: [0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2],
+    spells: [
+      { name:'Ilusão de Sonho', icon:'🌙', school:'Ilusão', tags:['Concentração'], cast:'1 ação', range:'27m', dur:'1 min', desc:'Uma ilusão aparece somente para uma criatura. Causa 11d6 dano psíquico se a criatura falhar em INT.', min_level:9 },
+      { name:'Telecinesia', icon:'🌀', school:'Transmutação', tags:['Concentração'], cast:'1 ação', range:'18m', dur:'10 min', desc:'Move objetos ou criaturas com força mental. Criaturas: STR oposta. Objetos: até 500kg.', min_level:9 },
+    ]
+  },
+  6: {
+    slots: [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1],
+    spells: [
+      { name:'Ilusão Irresistível', icon:'✨', school:'Ilusão', tags:['Concentração'], cast:'1 ação', range:'18m', dur:'10 min', desc:'Uma ilusão é indistinguível da realidade até mesmo para criaturas com Verdadeiro Ver. Afeta todos os sentidos.', min_level:11 },
+      { name:'Programar Ilusão', icon:'⚙️', school:'Ilusão', tags:[], cast:'1 ação', range:'36m', dur:'Até dissipar', desc:'Cria uma ilusão programável com até 5 gatilhos de ativação diferentes. Permanente até dissipar.', min_level:11 },
+    ]
+  },
+  7: {
+    slots: [0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1],
+    spells: [
+      { name:'Plano de Sombra', icon:'🌑', school:'Ilusão', tags:['Concentração'], cast:'10 min', range:'36m', dur:'1h', desc:'Cria um ambiente ilusório de até 1,5km² que funciona como plano semi-real. Dano real causado por criaturas dentro.', min_level:13 },
+    ]
+  },
+  8: {
+    slots: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1],
+    spells: [
+      { name:'Forma Etérea', icon:'🌫️', school:'Transmutação', tags:[], cast:'1 ação', range:'Si mesmo', dur:'8h', desc:'Você entra no Plano Etéreo. Pode se mover em qualquer direção, atravessar objetos. Volta ao material a qualquer momento.', min_level:15 },
+    ]
+  },
+  9: {
+    slots: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+    spells: [
+      { name:'Ilusão Verdadeira', icon:'🌟', school:'Ilusão', tags:[], cast:'10 min', range:'36m', dur:'Até dissipar', desc:'A magia de ilusão definitiva. Cria um fenômeno ou objeto completamente real para qualquer sentido. Permanente.', min_level:17 },
+    ]
+  },
+};
+
+// ═══════════════════════════════════════════════════════
+// EQUIPAMENTO POR NÍVEL
+// ═══════════════════════════════════════════════════════
+
+const EQUIPMENT = [
+  {
+    category: 'Armas',
+    items: [
+      { level:1, icon:'🍄', name:'Cajado do Cogumelo Ancião', rarity:'uncommon',
+        stats:['1d6 Contusão','Foco Arcano'],
+        desc:'Cajado de madeira retorcida encimado por um cogumelo petrificado manchado de marrom e branco. Runas brilham suavemente ao conjurar.' },
+      { level:1, icon:'🗡️', name:'Adaga de Latão Polido', rarity:'common',
+        stats:['1d4 Cortante','Arremesso 6/18m','Finesse'],
+        desc:'Pequena adaga com empunhadura em formato de bolota. Muito pequena nas mãos humanas, perfeita para um gnomo.' },
+      { level:1, icon:'🪨', name:'Estilingue de Carvalho', rarity:'common',
+        stats:['1d4 Contusão','Alcance 9/36m'],
+        desc:'Artesanal, talhado de um galho do antigo carvalho de seu mestre. Munição: pedras escolhidas nos jardins por onde passa.' },
+      { level:5, icon:'⚔️', name:'Adaga de Prata Encantada +1', rarity:'rare',
+        stats:['1d4+1 Cortante','Mágica'],
+        desc:'Adaga prateada com runas de ilusão na lâmina. Brilha levemente quando criaturas das trevas estão a menos de 18m.' },
+    ]
+  },
+  {
+    category: 'Armadura e Proteção',
+    items: [
+      { level:1, icon:'🧥', name:'Vestes do Viajante Arcano', rarity:'common',
+        stats:['CA 11+DES','Leve'],
+        desc:'Vestes de linho resistente em verde-musgo, com bolsos secretos costurados por dentro para guardar componentes.' },
+      { level:3, icon:'🛡️', name:'Anel da Proteção Menor', rarity:'uncommon',
+        stats:['+1 CA','+1 Resistência'],
+        desc:'Anel de cobre antigo. Concede +1 à CA e +1 a todos os testes de resistência enquanto usado.' },
+      { level:7, icon:'🧤', name:'Vestes do Ilusionista +1', rarity:'rare',
+        stats:['CA 12+DES','Res. Mágica'],
+        desc:'Vestes encantadas de seda negra com fios de prata. Reduzem o custo de componentes de ilusão e conferem leve proteção mágica.' },
+    ]
+  },
+  {
+    category: 'Itens Mágicos',
+    items: [
+      { level:1, icon:'🌿', name:'Amuleto do Jardim Eterno', rarity:'uncommon',
+        stats:['Fala com Plantas 1×/dia','Vantagem Sobrevivência'],
+        desc:'Colar de pedras-musgo e madeira esculpida em forma de flor de seis pétalas. Humano dos jardins ao redor o reconhece como protetor.' },
+      { level:1, icon:'💎', name:'Anel do Olho de Vidro', rarity:'uncommon',
+        stats:['Ilusão Menor 3×/dia','Gratuito'],
+        desc:'Anel de cobre com gema azul opaca. A gema parece um olho vivo quando a luz incide diagonalmente.' },
+      { level:1, icon:'👜', name:'Bolsinha de Terra Sagrada', rarity:'common',
+        stats:['Componente Universal'],
+        desc:'Terra do primeiro jardim que habitou, nunca reabastecida mas nunca esgotada. Substitui componentes de ilusão sem custo.' },
+      { level:4, icon:'📿', name:'Colar das Sementes Susurrantes', rarity:'uncommon',
+        stats:['Fala com Animais Pequenos','Alcance 30m'],
+        desc:'Colar de sementes perfuradas. Permite ouvir e falar com animais pequenos em um raio de 30m, uma vez por descanso longo.' },
+      { level:6, icon:'🔮', name:'Orbe de Cogumelo Petrificado', rarity:'rare',
+        stats:['Foco Arcano +1','Vantagem Ilusão'],
+        desc:'Um cogumelo perfeito fossilizado, guardado por milênios na terra de Verdemar. Concede vantagem em testes de conjuração de ilusão.' },
+      { level:9, icon:'🎩', name:'Chapéu de Ilusões (O próprio chapéu!)', rarity:'rare',
+        stats:['Disfarce 1×/dia','Ilusão Maior Gratuita 1×/dia'],
+        desc:'O chapéu vermelho de Bumberto é mais do que simbólico — foi encantado por seu mestre com magia antiga de jardim. Permite um disfarce completo por dia.' },
+      { level:13, icon:'⏳', name:'Ampulheta do Tempo Ilusório', rarity:'very rare',
+        stats:['Reviver Magia 1×/dia','Reação'],
+        desc:'Quando uma de suas ilusões é dissipada, pode usar reação para recriá-la instantaneamente sem gastar espaço de magia.' },
+    ]
+  },
+  {
+    category: 'Equipamento Geral',
+    items: [
+      { level:1, icon:'📖', name:'Grimório Encapado em Musgo', rarity:'common',
+        stats:['Magias do Mago'],
+        desc:'Capa de couro com musgo vivo cultivado. As páginas internas são de casca de bétula tratada com tinta feita de cogumelos bioluminescentes.' },
+      { level:1, icon:'🧪', name:'Kit de Herbalismo', rarity:'common',
+        stats:['Artesanato Herbologia'],
+        desc:'Conjunto de vidrinhos, almofariz, pinças e tesouras minúsculas para coleta e preparo de plantas mágicas.' },
+      { level:1, icon:'🗺️', name:'Mapa dos Jardins Conhecidos', rarity:'common',
+        stats:['Guia de Viagem'],
+        desc:'Pergaminho com mapas de todos os jardins mágicos e locais de flora rara que Bumberto já visitou. Atualizado com tinta verde.' },
+      { level:2, icon:'⚗️', name:'Suprimentos de Alquimia', rarity:'common',
+        stats:['Criar Poções Simples'],
+        desc:'Garrafinhas, tubos de vidro e pós coloridos. Suficiente para criar poções de cura mínima e óleos de proteção simples.' },
+    ]
+  },
+];
+
+// ═══════════════════════════════════════════════════════
+// ESTADO
+// ═══════════════════════════════════════════════════════
+
+let currentLevel = 1;
+let currentHP = 6;
+let maxHP = 6;
+
+// ═══════════════════════════════════════════════════════
+// FUNÇÕES AUXILIARES
+// ═══════════════════════════════════════════════════════
+
+function getMod(score) {
+  return Math.floor((score - 10) / 2);
+}
+
+function getIntAtLevel(lvl) {
+  let base = 18;
+  let extra = 0;
+  [4, 8, 12, 16, 19].forEach(l => { if (lvl >= l) extra++; });
+  return Math.min(20, base + extra);
+}
+
+function getProfBonus(lvl) {
+  return CHARACTER.profBonus[lvl - 1];
+}
+
+function getMaxHP(lvl) {
+  return CHARACTER.hpPerLevel[lvl - 1];
+}
+
+function fmtBonus(n) {
+  return (n >= 0 ? '+' : '') + n;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDERIZAR LEVEL BUTTONS
+// ═══════════════════════════════════════════════════════
+
+function renderLevelTrack() {
+  const track = document.getElementById('level-track');
+  track.innerHTML = '';
+  for (let i = 1; i <= 20; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'lvl-btn' + (i <= currentLevel ? ' reached' : '') + (i === currentLevel ? ' active' : '');
+    btn.textContent = i;
+    btn.onclick = () => setLevel(i);
+    track.appendChild(btn);
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// SET LEVEL
+// ═══════════════════════════════════════════════════════
+
+function setLevel(lvl) {
+  const prev = currentLevel;
+  currentLevel = lvl;
+
+  // Update HP
+  maxHP = getMaxHP(lvl);
+  currentHP = maxHP;
+  updateHPDisplay();
+
+  // Update badges
+  document.getElementById('level-badge').textContent = `Nível ${lvl}`;
+
+  // Update combat stats
+  const prof = getProfBonus(lvl);
+  const intScore = getIntAtLevel(lvl);
+  const intMod = getMod(intScore);
+
+  document.getElementById('int-val').textContent = intScore;
+  document.getElementById('int-mod').textContent = fmtBonus(intMod);
+  document.getElementById('prof-val').textContent = fmtBonus(prof);
+  document.getElementById('ca-val').textContent = 11 + getMod(14); // DES 14 sempre
+  document.getElementById('init-val').textContent = fmtBonus(getMod(14));
+
+  // Spell stats
+  document.getElementById('spell-dc').textContent = 8 + prof + intMod;
+  document.getElementById('spell-atk').textContent = fmtBonus(prof + intMod);
+
+  // Total spell slots
+  let totalSlots = 0;
+  [1,2,3,4,5,6,7,8,9].forEach(sl => {
+    if (SPELLS[sl]) totalSlots += SPELLS[sl].slots[lvl];
+  });
+  document.getElementById('spell-slots-display').textContent = totalSlots;
+
+  renderLevelTrack();
+  renderSaves();
+  renderSkills();
+  renderAbilities();
+  renderSpells();
+  renderEquipment();
+  renderMilestone();
+
+  if (lvl > prev) {
+    showToast(`⚡ Nível ${lvl} alcançado! Novos poderes desbloqueados!`);
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// HP TRACKER
+// ═══════════════════════════════════════════════════════
+
+function updateHPDisplay() {
+  document.getElementById('hp-current').textContent = currentHP;
+  document.getElementById('hp-max').textContent = `/ ${maxHP}`;
+  const pct = Math.max(0, Math.min(100, (currentHP / maxHP) * 100));
+  document.getElementById('hp-fill').style.width = pct + '%';
+}
+
+function changeHP(delta) {
+  currentHP = Math.max(0, Math.min(maxHP, currentHP + delta));
+  updateHPDisplay();
+}
+
+// ═══════════════════════════════════════════════════════
+// SAVES
+// ═══════════════════════════════════════════════════════
+
+function renderSaves() {
+  const grid = document.getElementById('saves-grid');
+  const attrs = { FOR:6, DES:14, CON:13, INT:getIntAtLevel(currentLevel), SAB:12, CAR:10 };
+  const prof = getProfBonus(currentLevel);
+  grid.innerHTML = CHARACTER.saves.names.map(attr => {
+    const mod = getMod(attrs[attr]);
+    const isProficient = CHARACTER.saves.proficient.includes(attr);
+    const bonus = mod + (isProficient ? prof : 0);
+    return `<div class="save-row">
+      <div class="save-dot ${isProficient ? 'proficient' : ''}"></div>
+      <span class="save-name">${attr}</span>
+      <span class="save-bonus">${fmtBonus(bonus)}</span>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// SKILLS
+// ═══════════════════════════════════════════════════════
+
+function renderSkills() {
+  const list = document.getElementById('skills-list');
+  const attrs = { FOR:6, DES:14, CON:13, INT:getIntAtLevel(currentLevel), SAB:12, CAR:10 };
+  const prof = getProfBonus(currentLevel);
+  list.innerHTML = CHARACTER.skills.map(sk => {
+    const attrMod = getMod(attrs[sk.attr]);
+    const bonus = attrMod + (sk.prof ? prof : 0);
+    return `<div class="skill-row">
+      <div class="skill-dot ${sk.prof ? 'proficient' : ''}"></div>
+      <span class="skill-name">${sk.name}</span>
+      <span class="skill-attr">${sk.attr}</span>
+      <span class="skill-bonus">${fmtBonus(bonus)}</span>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// ABILITIES
+// ═══════════════════════════════════════════════════════
+
+function renderMilestone() {
+  const el = document.getElementById('level-milestone-display');
+  const gained = ABILITIES.filter(a => a.new_at === currentLevel);
+  if (gained.length > 0) {
+    el.innerHTML = `<div class="level-milestone">
+      <span class="milestone-icon">🌟</span>
+      <span class="milestone-text">Nível <strong>${currentLevel}</strong> — ${gained.length} nova${gained.length > 1 ? 's' : ''} habilidade${gained.length > 1 ? 's' : ''} desbloqueada${gained.length > 1 ? 's' : ''}!</span>
+    </div>`;
+  } else {
+    el.innerHTML = '';
+  }
+}
+
+function renderAbilities() {
+  const list = document.getElementById('abilities-list');
+  const available = ABILITIES.filter(a => a.level <= currentLevel);
+  if (available.length === 0) {
+    list.innerHTML = '<p style="text-align:center; color:var(--brown-light); font-style:italic;">Nenhuma habilidade ainda.</p>';
+    return;
+  }
+  list.innerHTML = available.map(a => {
+    const isNew = a.new_at === currentLevel;
+    return `<div class="ability-card ${isNew ? 'new-ability' : ''}">
+      <div class="ability-top">
+        <div class="ability-icon">${a.icon}</div>
+        <div>
+          <div class="ability-name">${a.name}</div>
+          <div class="ability-source">${a.source}</div>
+        </div>
+        ${isNew ? '<span class="ability-new-badge">NOVO</span>' : ''}
+      </div>
+      <div class="ability-desc">${a.desc}</div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// SPELLS
+// ═══════════════════════════════════════════════════════
+
+function renderSpells() {
+  const container = document.getElementById('spells-container');
+  let html = '';
+
+  // CANTRIPS
+  const availableCantrips = SPELLS.cantrips.filter(s => !s.min_level || s.min_level <= currentLevel);
+  html += `<div class="spell-level-group">
+    <div class="spell-level-title">✨ Truques (${availableCantrips.length})</div>
+    ${availableCantrips.map(sp => spellCard(sp)).join('')}
+  </div>`;
+
+  // SPELL LEVELS
+  [1,2,3,4,5,6,7,8,9].forEach(sl => {
+    const data = SPELLS[sl];
+    if (!data) return;
+    const slots = data.slots[currentLevel];
+    if (slots === 0) return;
+
+    const available = data.spells.filter(s => !s.min_level || s.min_level <= currentLevel);
+    if (available.length === 0) return;
+
+    const levelNames = ['','1º','2º','3º','4º','5º','6º','7º','8º','9º'];
+    const slotsHTML = Array.from({length: slots}, (_, i) =>
+      `<div class="spell-slot" onclick="this.classList.toggle('used')" title="Espaço de magia"></div>`
+    ).join('');
+
+    html += `<div class="spell-level-group">
+      <div class="spell-level-title">
+        🔮 ${levelNames[sl]} Nível — ${slots} espaço${slots > 1 ? 's' : ''}
+        <div class="spell-slots">${slotsHTML}</div>
+      </div>
+      ${available.map(sp => spellCard(sp)).join('')}
+    </div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function spellCard(sp) {
+  const tags = sp.tags.map(t => `<span class="spell-tag ${t==='Concentração'?'conc':t==='Ritual'?'ritual':''}">${t}</span>`).join('');
+  return `<div class="spell-card">
+    <div class="spell-school">${sp.icon}</div>
+    <div class="spell-info">
+      <div class="spell-name-row">
+        <span class="spell-name">${sp.name}</span>
+        ${tags}
+      </div>
+      <div class="spell-desc">${sp.desc}</div>
+      <div class="spell-stats">
+        <span class="spell-stat"><strong>Conjuração:</strong> ${sp.cast}</span>
+        <span class="spell-stat"><strong>Alcance:</strong> ${sp.range}</span>
+        <span class="spell-stat"><strong>Duração:</strong> ${sp.dur}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// EQUIPMENT
+// ═══════════════════════════════════════════════════════
+
+function renderEquipment() {
+  const container = document.getElementById('equipment-container');
+  let html = '';
+
+  EQUIPMENT.forEach(cat => {
+    const available = cat.items.filter(it => it.level <= currentLevel);
+    if (available.length === 0) return;
+
+    html += `<div class="equipment-section">
+      <div class="section-header">${cat.category}</div>
+      <div class="equip-grid">
+        ${available.map(it => {
+          const newItem = it.level === currentLevel;
+          const rarityClass = it.rarity === 'uncommon' ? 'rarity-uncommon' : it.rarity === 'rare' || it.rarity === 'very rare' ? 'rarity-rare' : 'rarity-common';
+          const rarityLabel = { common:'Comum', uncommon:'Incomum', rare:'Raro', 'very rare':'Muito Raro' }[it.rarity] || it.rarity;
+          return `<div class="equip-card">
+            <div class="equip-icon">${it.icon}</div>
+            <div class="equip-info">
+              <div class="equip-name">${it.name} ${newItem ? '<span style="font-size:10px;background:var(--gold);color:#2a1800;padding:1px 6px;border-radius:99px;font-family:Cinzel,serif;font-weight:700;">NOVO</span>' : ''}</div>
+              <div class="equip-stats">${it.stats.map(s => `<span class="equip-stat">${s}</span>`).join('')}</div>
+              <div class="equip-desc">${it.desc}</div>
+            </div>
+            <span class="equip-rarity ${rarityClass}">${rarityLabel}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════
+// TAB SWITCHING
+// ═══════════════════════════════════════════════════════
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderLevelTrack();
+  setLevel(1);
+});
+</script>
+</body>
+</html>
